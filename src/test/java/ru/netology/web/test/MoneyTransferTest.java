@@ -1,7 +1,9 @@
 package ru.netology.web.test;
 
+import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.chrome.ChromeOptions;
 import ru.netology.web.data.DataHelper;
 import ru.netology.web.page.DashboardPage;
 import ru.netology.web.page.LoginPage;
@@ -14,6 +16,10 @@ import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static ru.netology.web.data.DataHelper.*;
+import org.openqa.selenium.WebDriverException;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MoneyTransferTest {
     DashboardPage dashboardPage;
@@ -21,6 +27,8 @@ public class MoneyTransferTest {
     CardInfo secondCardInfo;
     int firstCardBalance;
     int secondCardBalance;
+
+
 
 
     @BeforeEach
@@ -34,6 +42,15 @@ public class MoneyTransferTest {
         secondCardInfo = getSecondCardInfo();
         firstCardBalance = dashboardPage.getCardBalance(firstCardInfo);
         secondCardBalance = dashboardPage.getCardBalance(secondCardInfo);
+
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--start-maximized");
+        Map<String, Object> prefs = new HashMap<String, Object>();
+        prefs.put("credentials_enable_service", false);
+        prefs.put("password_manager_enabled", false);
+        options.setExperimentalOption("prefs", prefs);
+        Configuration.browserCapabilities = options;
+
     }
 
     @Test
