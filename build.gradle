@@ -19,6 +19,12 @@ dependencies {
     testImplementation 'org.slf4j:slf4j-simple:1.7.32'
     testCompileOnly 'org.projectlombok:lombok:1.18.28'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.28'
+
+    testImplementation 'com.github.javafaker:javafaker:1.0.2'
+    testImplementation 'io.rest-assured:rest-assured:4.3.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.testng:testng:7.6.0'
+    testImplementation 'com.google.code.gson:gson:2.10.1'
 }
 
 test {
