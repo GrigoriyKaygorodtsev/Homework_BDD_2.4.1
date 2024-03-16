@@ -13,6 +13,7 @@ public class VerificationPage {
     private final SelenideElement verifyButton = $("[data-test-id=action-verify]");
 
     public VerificationPage() {
+
         codeField.shouldBe(visible);
     }
 

@@ -14,7 +14,7 @@ import static com.codeborne.selenide.Selenide.$$;
 
 public class DashboardPage {
     private final String balanceStart = "баланс: ";
-    private final String balanceFinish = "р.";//
+    private final String balanceFinish = " р.";
     private final SelenideElement heading = $("[data-test-id=dashboard]");
     private final ElementsCollection cards = $$(".list__item div");
 
@@ -24,14 +24,14 @@ public class DashboardPage {
 
     public int getCardBalance(DataHelper.CardInfo cardInfo) {
 
-        var text = cards.findBy(Condition.text("**** **** ****" + cardInfo.getCardNumber().substring(15))).getText();
+        var text = cards.findBy(Condition.text("**** **** **** " + cardInfo.getCardNumber().substring(15))).getText();
         return extractBalance(text);
     }
 
-   // public int getCardBalance(int index) {
-   //     var text = cards.get(index).getText();
-   //     return extractBalance(text);
-   // }
+    public int getCardBalance(int index) {
+        var text = cards.get(index).getText();
+        return extractBalance(text);
+    }
 
     public TransferPage selectCardToTransfer(DataHelper.CardInfo cardInfo) {
         cards.findBy(Condition.attribute("data-test-id", cardInfo.getTestId())).$("button").click();

@@ -42,6 +42,7 @@ public class MoneyTransferTest {
         prefs.put("password_manager_enabled", false);
         options.setExperimentalOption("prefs", prefs);
         Configuration.browserCapabilities = options;
+
         var loginPage = open("http://localhost:9999", LoginPage.class);
         var authInfo = getAuthInfo();
         var verificationPage = loginPage.validLogin(authInfo);
@@ -71,7 +72,7 @@ public class MoneyTransferTest {
     }
 
     @Test
-    void shouldGetErrorMrssageAmountMoreBalance() {
+    void shouldGetErrorMessageAmountMoreBalance() {
         var amount = generateInvalidAmount(secondCardBalance);
         var transferPage = dashboardPage.selectCardToTransfer(firstCardInfo);
         transferPage.makeTransfer(String.valueOf(amount), secondCardInfo);
