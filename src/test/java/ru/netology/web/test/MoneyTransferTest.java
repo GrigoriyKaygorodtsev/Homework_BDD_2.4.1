@@ -79,8 +79,7 @@ public class MoneyTransferTest {
         transferPage.findErrorMessage("Выполнена попытка перевода суммы, превышающей остаток на карте списания");
         var actualBalanceFirstCard = dashboardPage.getCardBalance(firstCardInfo);
         var actualBalanceSecondCard = dashboardPage.getCardBalance(secondCardInfo);
-        assertAll(() -> transferPage.findErrorMessage("Выполнена попытка перевода суммы, превышающей остаток на карте списания"),
-                () -> assertEquals(firstCardBalance, actualBalanceFirstCard),
+        assertAll(() -> assertEquals(firstCardBalance, actualBalanceFirstCard),
                 () -> assertEquals(secondCardBalance, actualBalanceSecondCard));
     }
 }
